@@ -1,4 +1,4 @@
-package Token;
+package Scanner.Token;
 
 /**
  * Created by patrickcaruso on 9/16/16.

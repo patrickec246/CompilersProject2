@@ -1,6 +1,6 @@
-package States;
+package Scanner.States;
 
-import Token.Token;
+import Scanner.Token.Token;
 
 import java.util.HashMap;
 

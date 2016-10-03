@@ -1,5 +1,7 @@
-import States.DFA;
-import Token.Token;
+package Scanner;
+
+import Scanner.States.DFA;
+import Scanner.Token.Token;
 
 import java.io.*;
 

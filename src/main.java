@@ -1,4 +1,5 @@
-import Token.Token;
+import Scanner.TigerScanner;
+import Scanner.Token.Token;
 
 /**
  * Created by patrickcaruso on 9/16/16.
@@ -11,7 +12,7 @@ public class main {
         TigerScanner scanner = new TigerScanner(fileLocation);
         while (!scanner.atEnd()) {
             Token token = scanner.getToken();
-            System.out.print(token + " ");
+            System.out.println(token + " ");
         }
     }
 }
