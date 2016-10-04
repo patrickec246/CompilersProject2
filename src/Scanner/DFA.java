@@ -1,4 +1,4 @@
-package Scanner.States;
+package Scanner;
 
 import Scanner.Token.Token;
 
@@ -386,6 +386,7 @@ public class DFA {
         currentIdState = startIdState;
 
         for (char c: identifer.getInput().toCharArray()) {
+            if (!idmapper.containsKey(c)) return null; //todo if this breaks it, REMOVE!
             currentIdState = tokenLogic[currentIdState][idmapper.get(c)];
             if (currentIdState == 0) {
                 return identifer;

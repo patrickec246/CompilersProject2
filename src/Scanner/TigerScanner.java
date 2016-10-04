@@ -1,6 +1,5 @@
 package Scanner;
 
-import Scanner.States.DFA;
 import Scanner.Token.Token;
 
 import java.io.*;
@@ -108,7 +107,7 @@ public class TigerScanner {
         return getToken(true);
     }
 
-    public Token getToken(boolean clear) {
+    private Token getToken(boolean clear) {
         //we hit an invalid state
         if (logic.inValid()) {
             if (mode == LONGEST_MATCH) {
@@ -120,9 +119,11 @@ public class TigerScanner {
                     logic.reset();
                 }
                 currentPosition = 0;
+
                 if (t.getToken().equals("ID")) {
                     t = logic.identifierToToken(t);
                 }
+
                 if (t == null) {
                     System.out.println("ERROR!");
                 }

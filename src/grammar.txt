@@ -1,0 +1,85 @@
+TP -> let DS in SS end.
+DS -> TDL VDL FDL.
+TDL -> TD TDL
+        |.
+VDL -> VD VDL
+        |.
+FDL -> FD FDL
+        |.
+TD -> type ID eq TYPE.
+TYPE -> TYPEID
+        | array intlit of TYPEID
+        | id.
+TYPEID -> int
+        |float.
+VD -> var IDLIST colon TYPE OPINIT.
+IDLIST -> id OPIDLIST.
+OPIDLIST -> comma IDLIST
+        |.
+OPINIT -> assign CONST
+        |.
+FD -> func id ( PLIST ) RETTYPE begin SS end semi.
+PLIST -> P PLT
+        |.
+PLT -> comma P PLT
+        |.
+RETTYPE -> colon TYPE
+        |.
+P -> id colon TYPE.
+SS -> S SSUF.
+SSUF -> SS
+        |.
+S -> id FOLID
+       | if FOLIF
+       | while EXPR do SS enddo
+       | for id assign EXPR to EXPR do SS enddo semi
+       | break semi
+       | return EXPR
+       | let DS in SS end.
+FOLID -> lb FOLLB
+       | assign FOLASSIGN
+       | ( EXPRLIST ).
+FOLLB -> EXPR rb assign FOLASSIGN.
+FOLASSIGN -> EXPR
+       | id id ( EXPRLIST ).
+FOLIF -> EXPR FOLLOWEXPR.
+FOLLOWEXPR -> then FOLLOWTHEN.
+FOLLOWTHEN -> SS FOLLOWSS.
+FOLLOWSS -> endif
+       | else SS endif.
+EXPR -> TERM EXPRP.
+EXPRP -> PLUSMINUS TERM EXPRP
+       |.
+PLUSMINUS -> plus
+       |minus.
+TERM -> COMP TERMP.
+TERMP -> MULTDIV COMP TERMP
+       |.
+MULTDIV -> mult
+       |div.
+COMP -> LOGIC COMPP.
+COMPP -> COMPARATOR LOGIC COMPP
+       |.
+COMPARATOR -> eq
+       | neq
+       | lesser
+       | greater
+       | lessereq
+       | greatereq.
+LOGIC -> VAL LOGICP.
+LOGICP -> ANDOR VAL LOGICP
+       |.
+ANDOR -> and
+       |or.
+VAL -> CONST
+       | LVAL
+       | ( EXPR ).
+CONST -> int
+       | float.
+EXPRLIST -> EXPR EXPRLISTTAIL
+       |.
+EXPRLISTTAIL -> comma EXPR EXPRLISTTAIL
+       |.
+LVAL -> id LVALT.
+LVALT -> lb EXPR rb
+       |.
