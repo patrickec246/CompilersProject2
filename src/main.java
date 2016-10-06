@@ -1,5 +1,7 @@
+import Parser.TigerParser;
 import Scanner.TigerScanner;
 import Scanner.Token.Token;
+import Scanner.DFA;
 import java.util.*;
 
 /**
@@ -11,10 +13,13 @@ public class main {
 
     public static void main(String[] args) {
         TigerScanner scanner = new TigerScanner(fileLocation);
+        TigerParser parser = new TigerParser(fileLocation);
 
         while (!scanner.atEnd()) {
             Token token = scanner.getToken();
             System.out.println(token + " ");
         }
+
+        //parser.successfulParse();
     }
 }

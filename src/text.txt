@@ -1,9 +1,164 @@
 let
-type ArrayInt = array [100] of int;
-var X, Y : ArrayInt = 10;
-var i, sum : int = 0;
+        type ArrayInt = array [100] of int;
+        var X, Y : ArrayInt := 10;
+        var i, sum :int := 0;
 in
-for i := 1 to 100 do
-sum := sum + X[i] * Y[i]; enddo
-printi(sum);
+
+
+
+        for i := 1 to 100 do
+                sum := sum + X[i] * Y [i];
+        enddo;
+        printi(sum);
+
+let var i,j : int := 0;
+	var FIB : ArrayInt := 0;
+	function fib(n : int) : int
+	begin
+		if(n =  0)
+		then
+			return 0;
+		else				
+			if( n <> 1)
+			then
+				return 1;
+			else
+				if ( n > 100)
+				then
+					prints(“error”);
+					return -1;
+				else
+					return fib(n-1) + fib(n-2);			
+				endif;
+			endif;
+		endif;
+	end
+in
+	while( i < 100) 
+	do
+		FIB[i] = fib(i);
+		i := i + 1;
+	enddo;
+end
+let
+        type ArrayInt = array [100] of int;
+        var X, Y : ArrayInt := 10;
+        var i, sum :int := 0;
+in
+        for i := 1 to 100 do
+                sum := sum + X[i] * Y [i];
+        end
+        printi(sum);
+
+end	
+let
+	var i,j : int := 0;
+	var FIB : ArrayInt := 0;
+	function fib(n : int) : int
+	begin
+		if(n <> 0)
+		then
+			return 0;
+		else				
+			if( n <> 1)
+			then
+				return 1;
+			else
+				if ( n > 100)
+				then
+					prints(“error”);
+					return -1;
+				else
+					return fib(n-1) + fib(n-2);			
+				endif;
+			endif;
+		endif;
+	end
+in
+	while( i < 100) 
+	do
+		FIB[i] := fib(i);
+		i := i + 1;
+	enddo;
+end
+let
+	var i,j : int := 0;
+	var FIB : ArrayInt := 0;
+	function fib(n : int) : int
+	begin
+		if(n <> 0)
+		then
+			return 0;
+		else				
+			if( n <> 1)
+			then
+				return 1;
+			elise
+				if ( n > 100)
+				then
+					prints(“error”);
+					return -1;
+				else
+					return fib(n-1) + fib(n-2);			
+				endif;
+			endif;
+		endif;
+	end
+in
+	while( i < 100) 
+	do
+		FIB[i] := fib(i);
+		i := i + 1;
+	enddo;
+end
+let
+        type ArrayInt = array [100] of int;
+        var X, Y : ArrayInt := 10;
+        var i, sum :int := 0;
+in
+        for i := 1 to 100 do
+                sum := sum + X[i] * Y [i];
+        enddo;
+        printi(sum);
+end
+let
+        type ArrayInt = array [100] of int;
+        var X, Y : ArrayInt := 10;
+        var i, sum :int := 0;
+in
+        for i := 1 to 100 do
+                sum := sum + X[i] * Y [i];
+        enddo;
+        printi(sum);
+let
+	var i,j : int := 0;
+	var FIB : ArrayInt := 0;
+	function fib(n : int) : int
+	begin
+		if(n <> 0)
+		then
+			return 0.1;
+		else				
+			if( n <> 1)
+			then
+				return 1;
+			else
+				if ( n > 100)
+				then
+					prints(“error”);
+					return -1;
+				else
+					return fib(n-1) + fib(n-2);			
+				endif;
+			endif;
+		endif;
+	end
+in
+	while( i < 100) 
+	do
+		FIB[i] := fib(i);
+		i := i + 1;
+	enddo;
+end
+end				
 end
