@@ -18,9 +18,9 @@ public class main {
 
         while (!scanner.atEnd()) {
             Token token = scanner.getToken();
-            System.out.println(token + " ");
+           // System.out.println(token + " ");
         }
 
-        //parser.successfulParse();
+        parser.successfulParse();
     }
 }
