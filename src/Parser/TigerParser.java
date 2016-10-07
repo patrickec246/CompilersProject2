@@ -29,7 +29,7 @@ public class TigerParser {
 
     public boolean successfulParse() {
         stack.clear();
-        stack.add(Token.compose("TIGERPROGRAM"));
+        stack.add(Token.compose("TP"));
 
         Token t = null;
         int iv = 0;
@@ -126,15 +126,98 @@ public class TigerParser {
 
     private static HashMap<String, Integer> initiateTokenMap() {
         HashMap<String, Integer> indexer = new HashMap<>();
-        indexer.put("TIGERPROGRAM", 1);
-        indexer.put("LET", 2);
+        indexer.put("null", 0);
+        indexer.put("COMMA", 1);
+        indexer.put("COLON", 2);
+        indexer.put("SEMI", 3);
+        indexer.put("LPAREN", 4);
+        indexer.put("RPAREN", 5);
+        indexer.put("LBRACK", 6);
+        indexer.put("RBRACK", 7);
+        indexer.put("LBRACE", 8);
+        indexer.put("RBRACE", 9);
+        indexer.put("PERIOD", 10);
+        indexer.put("PLUS", 11);
+        indexer.put("MINUS", 12);
+        indexer.put("MULT", 13);
+        indexer.put("DIV", 14);
+        indexer.put("LESSER", 15);
+        indexer.put("GREATER", 16);
+        indexer.put("GREATEREQ", 17);
+        indexer.put("LESSEREQ", 18);
+        indexer.put("AND", 19);
+        indexer.put("OR", 20);
+        indexer.put("ASSIGN", 21);
+        indexer.put("INTLIT", 22);
+        indexer.put("FLOATLIT", 23);
+        indexer.put("ID", 24);
+        indexer.put("NEQ", 25);
+        indexer.put("EQ", 26);
+        indexer.put("ARRAY", 27);
+        indexer.put("BREAK", 28);
+        indexer.put("BEGIN", 29);
+        indexer.put("DO", 30);
+        indexer.put("ELSE", 31);
+        indexer.put("END", 32);
+        indexer.put("ENDDO", 33);
+        indexer.put("ENDIF", 34);
+        indexer.put("FOR", 35);
+        indexer.put("FUNC", 36);
+        indexer.put("IF", 37);
+        indexer.put("IN", 38);
+        indexer.put("LET", 39);
+        indexer.put("OF", 40);
+        indexer.put("THEN", 41);
+        indexer.put("TO", 42);
+        indexer.put("TYPE", 43);
+        indexer.put("VAR", 44);
+        indexer.put("WHILE", 45);
+        indexer.put("INT", 46);
+        indexer.put("FLOAT", 47);
         return indexer;
     }
 
     private static HashMap<String, Integer> initiateVariableMap() {
         HashMap<String, Integer> indexer = new HashMap<>();
-        indexer.put("TIGERPROGRAM", 0);
+        indexer.put("TP", 0);
         indexer.put("DS", 1);
+        indexer.put("TDL", 2);
+        indexer.put("VDL", 3);
+        indexer.put("FDL", 4);
+        indexer.put("TD", 5);
+        indexer.put("TYPE", 6);
+        indexer.put("TYPEID", 7);
+        indexer.put("VD", 8);
+        indexer.put("IDLIST", 9);
+        indexer.put("OPIDLIST", 10);
+        indexer.put("OPINIT", 11);
+        indexer.put("FD", 12);
+        indexer.put("PLIST", 13);
+        indexer.put("PLT", 14);
+        indexer.put("RETTYPE", 15);
+        indexer.put("P", 16);
+        indexer.put("SS", 17);
+        indexer.put("SSUF", 18);
+        indexer.put("S", 19);
+        indexer.put("OPPREF", 20);
+        indexer.put("EXPR", 21);
+        indexer.put("EXPRP", 22);
+        indexer.put("PLUSMINUS", 23);
+        indexer.put("TERM", 24);
+        indexer.put("TERMP", 25);
+        indexer.put("MULTDIV", 26);
+        indexer.put("COMP", 27);
+        indexer.put("COMPP", 28);
+        indexer.put("COMPARATOR", 29);
+        indexer.put("LOGIC", 30);
+        indexer.put("LOGICP", 31);
+        indexer.put("ANDOR", 32);
+        indexer.put("VAL", 33);
+        indexer.put("CONST", 34);
+        indexer.put("EXPRLIST", 35);
+        indexer.put("EXPRLISTTAIL", 36);
+        indexer.put("LVAL", 37);
+        indexer.put("LVALT", 38);
         return indexer;
     }
 }
