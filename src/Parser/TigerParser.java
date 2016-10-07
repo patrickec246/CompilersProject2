@@ -33,14 +33,12 @@ public class TigerParser {
 
         Token t = null;
         int iv = 0;
-        while ((t = scanner.getToken()) != null && iv <= 1) {
+        while ((t = scanner.getToken()) != null) {
             System.out.println("===========================");
             System.out.println("TRYING TO MATCH: " + t.getToken());
             boolean atLeft = false;
             int max = 0;
-            while (!atLeft && max < 2) {
-                iv++;
-                max++;
+            while (!atLeft) {
                 System.out.println("STACK: (" + stack.size() + ")");
                 for (Token tok : stack) {
                     System.out.println(tok.getToken());

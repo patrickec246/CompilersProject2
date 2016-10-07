@@ -42,7 +42,7 @@ public class Rule {
     
     //TYPE// intlist and Braces?
     private static Rule rule10 = new Rule(Token.compose("TYPE"), new Token[] {Token.compose("TYPEID") });
-    private static Rule rule11 = new Rule(Token.compose("TYPE"), new Token[] {Token.ARRAY, Token.LBRACK, Token.INTLIST, Token.RBRACK, Token.OF, Token.compose("TYPEID")});
+    private static Rule rule11 = new Rule(Token.compose("TYPE"), new Token[] {Token.ARRAY, Token.LBRACK, Token.INTLIT, Token.RBRACK, Token.OF, Token.compose("TYPEID")});
     private static Rule rule12 = new Rule(Token.compose("TYPE"), new Token[] {Token.ID});
 
     //TYPEID

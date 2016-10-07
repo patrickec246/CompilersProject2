@@ -16,10 +16,11 @@ public class main {
         TigerScanner scanner = new TigerScanner(fileLocation);
         TigerParser parser = new TigerParser(fileLocation);
 
+        /**
         while (!scanner.atEnd()) {
             Token token = scanner.getToken();
-           // System.out.println(token + " ");
-        }
+            //System.out.println(token + " ");
+        }*/
 
         parser.successfulParse();
     }
