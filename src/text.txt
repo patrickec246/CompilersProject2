@@ -1,7 +1,7 @@
 let
-        var i, sum :int := 0;
+        var i, sum :int := 0
 in
         for i := 1 to 100 do
-                sum := sum + X[i] * Y [i];
-        enddo;
+            sum := sum + X[i] * Y [i]
+        enddo
 end

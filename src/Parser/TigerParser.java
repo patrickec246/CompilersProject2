@@ -36,17 +36,24 @@ public class TigerParser {
         while ((t = scanner.getToken()) != null) {
             System.out.println("===========================");
             System.out.println("TRYING TO MATCH: " + t.getToken());
-            boolean atLeft = false;
-            int max = 0;
-            while (!atLeft) {
-                System.out.println("STACK: (" + stack.size() + ")");
-                for (Token tok : stack) {
-                    System.out.println(tok.getToken());
+            boolean matches = false;
+            while (!matches) {
+                if (stack.size() > 0 && stack.get(0).matches(t)) {
+                    System.out.println("MATCHED: " + stack.removeFirst() + " with " + t);
+                    break;
                 }
+
+                System.out.print ("STACK: (" + stack.size() + ") ");
+                System.out.print("[");
+                for (Token tok : stack) {
+                    System.out.print(tok.getToken() + " ");
+                }
+                System.out.println("]");
+
+
                 Token topToken = stack.removeFirst();
                 System.out.println("POP: " + topToken.getToken());
 
-                //lol obviously lookup the rule to use
                 int ruleNumber = lookupRule(topToken, t);
                 Rule rule = Rule.rules[ruleNumber];
                 System.out.println("Using rule: " + ruleNumber);
@@ -62,9 +69,10 @@ public class TigerParser {
                     stack.addFirst(rule.getDecompose()[i]);
                 }
 
-                if (stack.get(0).matches(t)) {
-                    atLeft = true;
+                System.out.println("Checking whether [" + topToken + "] matches [" + t + "]");
+                if (stack.size() > 0 && stack.get(0).matches(t)) {
                     System.out.println("MATCHED: " + stack.removeFirst() + " with " + t);
+                    break;
                 }
             }
         }
