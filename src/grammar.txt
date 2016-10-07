@@ -27,26 +27,18 @@ RETTYPE -> colon TYPE
         |.
 P -> id colon TYPE.
 SS -> S SSUF.
-SSUF -> SS
+SSUF -> S SSUF
         |.
-S -> id FOLID
-       | if FOLIF
+S -> LVAL assign EXPR
+       | if EXPR then SS endif
        | while EXPR do SS enddo
        | for id assign EXPR to EXPR do SS enddo semi
+       | OPPREF id ( EXPRLIST ) semi
        | break semi
        | return EXPR
        | let DS in SS end.
-FOLID -> lb FOLLB
-       | assign FOLASSIGN
-       | ( EXPRLIST ).
-FOLLB -> EXPR rb assign FOLASSIGN.
-FOLASSIGN -> EXPR
-       | id id ( EXPRLIST ).
-FOLIF -> EXPR FOLLOWEXPR.
-FOLLOWEXPR -> then FOLLOWTHEN.
-FOLLOWTHEN -> SS FOLLOWSS.
-FOLLOWSS -> endif
-       | else SS endif.
+OPPREF -> LVAL assign id
+       |id.
 EXPR -> TERM EXPRP.
 EXPRP -> PLUSMINUS TERM EXPRP
        |.

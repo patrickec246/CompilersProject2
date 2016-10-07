@@ -76,7 +76,9 @@ public class TigerScanner {
                 peekStack += c;
                 currentPosition++;
             }
+            //System.out.print("Moving " + logic.getCurrentState() + " -> ");
             int i = logic.step(c);
+            //System.out.println(logic.getCurrentState() + " on char " + c);
             if (logic.accept()) {
                 lastMatch = currentPosition;
                 lastValidState = logic.getCurrentState();
@@ -125,7 +127,7 @@ public class TigerScanner {
                 }
 
                 if (t == null) {
-                    System.out.println("ERROR!");
+                    System.out.println("ERROR ON CHARACTER " + ((int)logic.getCharBuffer()) + "!");
                 }
                 return t;
             } else {

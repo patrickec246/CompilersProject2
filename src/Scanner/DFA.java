@@ -20,15 +20,20 @@ public class DFA {
     private int startIdState = 0;
     private int currentIdState = startIdState;
 
+    private char charBuffer;
+
     public DFA() {
         startState = 1;
         currentState = startState;
 
         startIdState = 1;
         currentIdState = startIdState;
+
+        charBuffer = 0;
     }
 
     public int step(char c) {
+        charBuffer = c;
         if (currentState == 0) {
             return 0;
         }
@@ -45,15 +50,13 @@ public class DFA {
         return currentState;
     }
 
-    public int step(String s) {
-        for (char c: s.toCharArray()) {
-            step(c);
-        }
-        return currentState;
+    public void reset() {
+        charBuffer = 0;
+        currentState = startState;
     }
 
-    public void reset() {
-        currentState = startState;
+    public char getCharBuffer() {
+        return charBuffer;
     }
 
     public boolean inValid() {
