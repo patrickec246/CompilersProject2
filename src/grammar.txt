@@ -38,7 +38,7 @@
 38 - S -> return EXPR
 39 - S -> let DS in SS end
 40 - OPPREF -> LVAL assign id
-41 - OPPREF -> id assign
+41 - OPPREF -> ε
 42 - EXPR -> TERM EXPRP
 43 - EXPRP -> PLUSMINUS TERM EXPRP
 44 - EXPRP -> ε
@@ -48,7 +48,6 @@
 48 - TERMP -> MULTDIV COMP TERMP
 49 - TERMP -> ε
 50 - MULTDIV -> *
-50 - MULTDIV -> /
 51 - COMP -> LOGIC COMPP
 52 - COMPP -> COMPARATOR LOGIC COMPP
 53 - COMPP -> ε
@@ -75,3 +74,4 @@
 74 - LVAL -> id LVALT
 75 - LVALT -> lb EXPR rb
 76 - LVALT -> ε
+77 - MULTDIV -> /
