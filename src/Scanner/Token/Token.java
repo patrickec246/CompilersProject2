@@ -79,6 +79,8 @@ public class Token {
     public static Token VAR = new Token("VAR", null);
     public static Token WHILE = new Token("WHILE", null);
     public static Token ENDIF = new Token("ENDIF", null);
+    public static Token INT = new Token("INT", null);
+    public static Token FLOAT = new Token("FLOAT", null);
 
     public static Token compose(String token) {
         return new Token(token, null);
