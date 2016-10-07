@@ -24,6 +24,6 @@ public class Rule {
     }
 
     private static Rule rule1 = new Rule(Token.compose("TIGERPROGRAM"), new Token[] {Token.LET, Token.compose("DS"), Token.IN, Token.compose("SS"), Token.END});
-    //private static Rule rule2 = new Rule(Token.compose("BINARYOPERATOR"), Token.PLUS);
+
     public static Rule[] rules = {null, rule1};
 }
