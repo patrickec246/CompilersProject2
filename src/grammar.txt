@@ -1,77 +1,77 @@
-TP -> let DS in SS end.
-DS -> TDL VDL FDL.
-TDL -> TD TDL
-        |.
-VDL -> VD VDL
-        |.
-FDL -> FD FDL
-        |.
-TD -> type ID eq TYPE.
-TYPE -> TYPEID
-        | array intlit of TYPEID
-        | id.
-TYPEID -> int
-        |float.
-VD -> var IDLIST colon TYPE OPINIT.
-IDLIST -> id OPIDLIST.
-OPIDLIST -> comma IDLIST
-        |.
-OPINIT -> assign CONST
-        |.
-FD -> func id ( PLIST ) RETTYPE begin SS end semi.
-PLIST -> P PLT
-        |.
-PLT -> comma P PLT
-        |.
-RETTYPE -> colon TYPE
-        |.
-P -> id colon TYPE.
-SS -> S SSUF.
-SSUF -> S SSUF
-        |.
-S -> LVAL assign EXPR
-       | if EXPR then SS endif
-       | while EXPR do SS enddo
-       | for id assign EXPR to EXPR do SS enddo semi
-       | OPPREF id ( EXPRLIST ) semi
-       | break semi
-       | return EXPR
-       | let DS in SS end.
-OPPREF -> LVAL assign id
-       |id.
-EXPR -> TERM EXPRP.
-EXPRP -> PLUSMINUS TERM EXPRP
-       |.
-PLUSMINUS -> plus
-       |minus.
-TERM -> COMP TERMP.
-TERMP -> MULTDIV COMP TERMP
-       |.
-MULTDIV -> mult
-       |div.
-COMP -> LOGIC COMPP.
-COMPP -> COMPARATOR LOGIC COMPP
-       |.
-COMPARATOR -> eq
-       | neq
-       | lesser
-       | greater
-       | lessereq
-       | greatereq.
-LOGIC -> VAL LOGICP.
-LOGICP -> ANDOR VAL LOGICP
-       |.
-ANDOR -> and
-       |or.
-VAL -> CONST
-       | LVAL
-       | ( EXPR ).
-CONST -> int
-       | float.
-EXPRLIST -> EXPR EXPRLISTTAIL
-       |.
-EXPRLISTTAIL -> comma EXPR EXPRLISTTAIL
-       |.
-LVAL -> id LVALT.
-LVALT -> lb EXPR rb
-       |.
+1 - TP -> let DS in SS end
+2 - DS -> TDL VDL FDL
+3 - TDL -> TD TDL
+4 - TDL -> ε
+5 - VDL -> VD VDL
+6 - VDL -> ε
+7 - FDL -> FD FDL
+8 - FDL -> ε
+9 - TD -> type ID eq TYPE
+10 - TYPE -> TYPEID
+11 - TYPE -> array [ intlit ] of TYPEID
+12 - TYPE -> id
+13 - TYPEID -> int
+14 - TYPEID -> float
+15 - VD -> var IDLIST colon TYPE OPINIT
+16 - IDLIST -> id OPIDLIST
+17 - OPIDLIST -> comma IDLIST
+18 - OPIDLIST -> ε
+19 - OPINIT -> assign CONST
+20 - OPINIT -> ε
+21 - FD -> func id ( PLIST ) RETTYPE begin SS end semi
+22 - PLIST -> P PLT
+23 - PLIST -> ε
+24 - PLT -> comma P PLT
+25 - PLT -> ε
+26 - RETTYPE -> colon TYPE
+27 - RETTYPE -> ε
+28 - P -> id colon TYPE
+29 - SS -> S SSUF.
+30 - SSUF -> S SSUF
+31 - SSUF -> ε
+32 - S -> LVAL assign EXPR
+33 - S -> if EXPR then SS endif
+34 - S -> while EXPR do SS enddo
+35 - S -> for id assign EXPR to EXPR do SS enddo semi
+36 - S -> OPPREF id ( EXPRLIST ) semi
+37 - S -> break semi
+38 - S -> return EXPR
+39 - S -> let DS in SS end
+40 - OPPREF -> LVAL assign id
+41 - OPPREF -> id assign
+42 - EXPR -> TERM EXPRP
+43 - EXPRP -> PLUSMINUS TERM EXPRP
+44 - EXPRP -> ε
+45 - PLUSMINUS -> +
+46 - PLUSMINUS -> -
+47 - TERM -> COMP TERMP
+48 - TERMP -> MULTDIV COMP TERMP
+49 - TERMP -> ε
+50 - MULTDIV -> *
+50 - MULTDIV -> /
+51 - COMP -> LOGIC COMPP
+52 - COMPP -> COMPARATOR LOGIC COMPP
+53 - COMPP -> ε
+54 - COMPARATOR -> =
+55 - COMPARATOR -> <>
+56 - COMPARATOR -> <
+57 - COMPARATOR -> >
+58 - COMPARATOR -> <=
+59 - COMPARATOR -> >=
+60 - LOGIC -> VAL LOGICP
+61 - LOGICP -> ANDOR VAL LOGICP
+62 - LOGICP -> ε
+63 - ANDOR -> &
+64 - ANDOR -> |
+65 - VAL -> CONST
+66 - VAL -> LVAL
+67 - VAL -> (EXPR)
+68 - CONST -> int
+69 - CONST -> float
+70 - EXPRLIST -> EXPR EXPRLISTTAIL
+71 - EXPRLIST -> ε
+72 - EXPRLISTTAIL -> comma EXPR EXPRLISTTAIL
+73 - EXPRLISTTAIL -> ε
+74 - LVAL -> id LVALT
+75 - LVALT -> lb EXPR rb
+76 - LVALT -> ε
