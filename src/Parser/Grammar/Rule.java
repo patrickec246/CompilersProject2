@@ -38,7 +38,7 @@ public class Rule {
     private static Rule rule7 = new Rule(Token.compose("FDL"), new Token[] {Token.compose("FD"), Token.compose("FDL")});
     private static Rule rule8 = new Rule(Token.compose("FDL"), new Token[] {});
 
-    private static Rule rule9 = new Rule(Token.compose("TD"), new Token[] { Token.TYPE, Token.compose("ID"), Token.EQ, Token.compose("TYPE") });
+    private static Rule rule9 = new Rule(Token.compose("TD"), new Token[] {Token.TYPE, Token.compose("ID"), Token.EQ, Token.compose("TYPE"), Token.SEMI});
     
     //TYPE// intlist and Braces?
     private static Rule rule10 = new Rule(Token.compose("TYPE"), new Token[] {Token.compose("TYPEID") });
@@ -49,7 +49,7 @@ public class Rule {
     private static Rule rule13 = new Rule(Token.compose("TYPEID"), new Token[] {Token.INT});
     private static Rule rule14 = new Rule(Token.compose("TYPEID"), new Token[] {Token.FLOAT}); 
 
-    private static Rule rule15 = new Rule(Token.compose("VD"), new Token[] { Token.VAR, Token.compose("IDLIST"), Token.COLON, Token.compose("TYPE"), Token.compose("OPINIT") });
+    private static Rule rule15 = new Rule(Token.compose("VD"), new Token[] { Token.VAR, Token.compose("IDLIST"), Token.COLON, Token.compose("TYPE"), Token.compose("OPINIT"), Token.SEMI});
     private static Rule rule16 = new Rule(Token.compose("IDLIST"), new Token[] { Token.ID, Token.compose("OPIDLIST") });
     
     //OPIDLIST//
@@ -76,17 +76,17 @@ public class Rule {
 
     private static Rule rule28 = new Rule(Token.compose("P"), new Token[] { Token.ID ,Token.COLON, Token.compose("TYPE")});
     
-    private static Rule rule29 = new Rule(Token.compose("SS"), new Token[] {Token.compose("S"), Token.compose("SSURF")});
+    private static Rule rule29 = new Rule(Token.compose("SS"), new Token[] {Token.compose("S"), Token.compose("SSUF")});
 
     //SSURF
-    private static Rule rule30 = new Rule(Token.compose("SSURF"), new Token[] {Token.compose("S"), Token.compose("SSURF")});
-    private static Rule rule31 = new Rule(Token.compose("SSURF"), new Token[] {});
+    private static Rule rule30 = new Rule(Token.compose("SSUF"), new Token[] {Token.compose("S"), Token.compose("SSUF")});
+    private static Rule rule31 = new Rule(Token.compose("SSUF"), new Token[] {});
 
     //SS
-    private static Rule rule32 = new Rule(Token.compose("S"), new Token[] {Token.compose("LVAL"), Token.ASSIGN, Token.compose("EXPR")});
+    private static Rule rule32 = new Rule(Token.compose("S"), new Token[] {Token.compose("LVAL"), Token.ASSIGN, Token.compose("EXPR"), Token.SEMI});
     private static Rule rule33 = new Rule(Token.compose("S"), new Token[] {Token.IF, Token.compose("EXPR"), Token.THEN, Token.compose("SS"), Token.ENDIF});
     private static Rule rule34 = new Rule(Token.compose("S"), new Token[] {Token.WHILE, Token.compose("EXPR"), Token.DO, Token.compose("SS"), Token.ENDDO});
-    private static Rule rule35 = new Rule(Token.compose("S"), new Token[] {Token.FOR, Token.ID, Token.ASSIGN, Token.compose("EXPR"), Token.TO, Token.compose("EXPR"), Token.DO, Token.compose("SS"), Token.ENDDO, Token.SEMI});
+    private static Rule rule35 = new Rule(Token.compose("S"), new Token[] {Token.FOR, Token.ID, Token.ASSIGN, Token.compose("EXPR"), Token.TO, Token.compose("EXPR"), Token.DO, Token.compose("SS"), Token.ENDDO});
     private static Rule rule36 = new Rule(Token.compose("S"), new Token[] {Token.compose("OPPREF"), Token.ID, Token.LPAREN, Token.compose("EXPRLIST"), Token.RPAREN, Token.SEMI});
     private static Rule rule37 = new Rule(Token.compose("S"), new Token[] {Token.BREAK, Token.SEMI});
     private static Rule rule38 = new Rule(Token.compose("S"), new Token[] {Token.RETURN, Token.compose("EXPR")});
@@ -165,7 +165,27 @@ public class Rule {
     //MULTDIV 
     private static Rule rule77 = new Rule(Token.compose("MULTDIV"), new Token[] {Token.DIV});
 
-    public static Rule[] rules = {null, 
+    private static Rule rule78 = new Rule(Token.compose("S"), new Token[] {Token.ID, Token.compose("SP")});
+
+    private static Rule rule79 = new Rule(Token.compose("SP"), new Token[] {Token.LPAREN, Token.compose("EXPRLIST"), Token.RPAREN, Token.SEMI});
+    private static Rule rule80 = new Rule(Token.compose("SP"), new Token[] {Token.ASSIGN, Token.compose("RHS")});
+    private static Rule rule81 = new Rule(Token.compose("SP"), new Token[] {Token.LBRACK, Token.compose("EXPR"), Token.RBRACK, Token.ASSIGN, Token.compose("RHS")});
+
+    private static Rule rule82 = new Rule(Token.compose("RHS"), new Token[] {Token.ID, Token.compose("RHSP"), Token.SEMI});
+    private static Rule rule83 = new Rule(Token.compose("RHS"), new Token[] {Token.LPAREN, Token.compose("EXPR"), Token.RPAREN, Token.compose("RHSPP"), Token.SEMI});
+    private static Rule rule84 = new Rule(Token.compose("RHS"), new Token[] {Token.compose("CONST"), Token.compose("RHSPP"), Token.SEMI});
+
+    private static Rule rule85 = new Rule(Token.compose("RHSP"), new Token[] {Token.LPAREN, Token.compose("EXPR"), Token.RPAREN});
+    private static Rule rule86 = new Rule(Token.compose("RHSP"), new Token[] {Token.LBRACK, Token.compose("EXPR"), Token.RBRACK, Token.compose("RHSPP")});
+    private static Rule rule87 = new Rule(Token.compose("RHSP"), new Token[] {Token.compose("RHSPP")});
+
+    private static Rule rule88 = new Rule(Token.compose("RHSPP"), new Token[] {Token.compose("PLUSMINUS"), Token.compose("EXPR")});
+    private static Rule rule89 = new Rule(Token.compose("RHSPP"), new Token[] {Token.compose("MULTDIV"), Token.compose("EXPR")});
+    private static Rule rule90 = new Rule(Token.compose("RHSPP"), new Token[] {Token.compose("COMPARATOR"), Token.compose("EXPR")});
+    private static Rule rule91 = new Rule(Token.compose("RHSPP"), new Token[] {Token.compose("ANDOR"), Token.compose("EXPR")});
+    private static Rule rule92 = new Rule(Token.compose("RHSPP"), new Token[] {});
+
+    public static Rule[] rules = {null,
         rule1,
         rule2,
         rule3,
@@ -242,6 +262,21 @@ public class Rule {
         rule74,
         rule75,
         rule76,
-        rule77
+        rule77,
+        rule78,
+        rule79,
+        rule80,
+        rule81,
+        rule82,
+        rule83,
+        rule84,
+        rule85,
+        rule86,
+        rule87,
+        rule88,
+        rule89,
+        rule90,
+        rule91,
+        rule92
     };
 }

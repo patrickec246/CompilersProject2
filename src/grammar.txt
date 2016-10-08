@@ -65,8 +65,8 @@
 65 - VAL -> CONST
 66 - VAL -> LVAL
 67 - VAL -> (EXPR)
-68 - CONST -> int
-69 - CONST -> float
+68 - CONST -> intlit
+69 - CONST -> floatlit
 70 - EXPRLIST -> EXPR EXPRLISTTAIL
 71 - EXPRLIST -> ε
 72 - EXPRLISTTAIL -> comma EXPR EXPRLISTTAIL
@@ -75,3 +75,18 @@
 75 - LVALT -> lb EXPR rb
 76 - LVALT -> ε
 77 - MULTDIV -> /
+78 - S -> id SP
+79 - SP -> ( EXPRLIST ) semi
+80 - SP -> assign RHS
+81 - SP -> lb EXPR rb assign RHS
+82 - RHS -> id RHSP semi
+83 - RHS -> ( EXPR ) RHSPP semi
+84 - RHS -> CONST RHSPP semi
+85 - RHSP -> ( EXPRLIST )
+86 - RHSP -> lb EXPR rb RHSPP
+87 - RHSP -> RHSPP
+88 - RHSPP -> PLUSMINUS EXPR
+89 - RHSPP -> MULTDIV EXPR
+90 - RHSPP -> COMPARATOR EXPR
+91 - RHSPP -> ANDOR EXPR
+92 - RHSPP -> ε
