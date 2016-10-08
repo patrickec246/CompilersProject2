@@ -20,6 +20,6 @@ public class main {
             //System.out.println(token + " ");
         }
 
-        System.out.println("Successful parse: " + parser.successfulParse());
+        System.out.println("Successful parse: " + parser.successfulParse(false));
     }
 }

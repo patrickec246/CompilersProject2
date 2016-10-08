@@ -27,33 +27,43 @@ public class TigerParser {
         tokenMap = initiateTokenMap();
     }
 
-    public boolean successfulParse() {
+    public boolean successfulParse(boolean verbose) {
         stack.clear();
         stack.add(Token.compose("TP"));
 
         Token t = null;
 
         while ((t = scanner.getToken()) != null && stack.size() > 0) {
-            System.out.println("===========================");
-            System.out.println("TRYING TO MATCH: " + t.getToken());
+            if (verbose) {
+                System.out.println("===========================");
+                System.out.println("TRYING TO MATCH: " + t.getToken());
+            }
 
             boolean matches = false;
             while (!matches) {
                 if (stack.size() > 0 && stack.get(0).matches(t)) {
-                    System.out.println("MATCHED: " + stack.removeFirst() + " with " + t);
+                    Token tok = stack.removeFirst();
+                    if (verbose) {
+                        System.out.println("MATCHED: " + tok + " with " + t);
+                    }
                     break;
                 }
 
-                System.out.print ("STACK: (" + stack.size() + ") ");
-                System.out.print("[");
+                if (verbose) {
+                    System.out.print ("STACK: (" + stack.size() + ") ");
+                    System.out.print("[");
 
-                for (Token tok : stack) {
-                    System.out.print(tok.getToken() + " ");
+                    for (Token tok : stack) {
+                        System.out.print(tok.getToken() + " ");
+                    }
+                    System.out.println("]");
                 }
-                System.out.println("]");
 
                 Token topToken = stack.removeFirst();
-                System.out.println("POP: " + topToken.getToken());
+
+                if (verbose) {
+                    System.out.println("POP: " + topToken.getToken());
+                }
 
                 int ruleNumber = lookupRule(topToken, t);
 
@@ -63,25 +73,33 @@ public class TigerParser {
                     //todo LL(2) lookup
                 } else {
                     rule = Rule.rules[ruleNumber];
-                    System.out.println("Using rule: " + ruleNumber);
+                    if (verbose) {
+                        System.out.println("Using rule: " + ruleNumber);
+                    }
                 }
 
                 //no valid LL(1) parse
                 if (ruleNumber == 0) {
+                    System.out.println("Couldnt match " + topToken + " with " + t);
                     return false;
                 }
 
                 if (!rule.satisfies(topToken)) {
+                    System.out.println("Couldnt match " + topToken + " with " + t);
                     return false;
                 }
 
                 for (int i = rule.getDecompose().length - 1; i >= 0; i--) {
                     stack.addFirst(rule.getDecompose()[i]);
                 }
-
-                System.out.println("Checking whether [" + topToken + "] matches [" + t + "]");
+                if (verbose) {
+                    System.out.println("Checking whether [" + topToken + "] matches [" + t + "]");
+                }
                 if (stack.size() > 0 && stack.get(0).matches(t)) {
-                    System.out.println("MATCHED: " + stack.removeFirst() + " with " + t);
+                    Token tok = stack.removeFirst();
+                    if (verbose) {
+                        System.out.println("MATCHED: " + tok + " with " + t);
+                    }
                     break;
                 }
             }
