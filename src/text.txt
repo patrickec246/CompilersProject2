@@ -1,5 +1,5 @@
 let
-    var X, Y : ArrayInt := 10;
+    var X, Y : ArrayInt := 10l;
 in
     for i := 1 to 100 do
         sum := sum + X[i] * Y [i];
