@@ -12,6 +12,7 @@ public class main {
     private static final String fileLocation = "src/text.txt";
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         TigerScanner scanner = new TigerScanner(fileLocation);
         TigerParser parser = new TigerParser(fileLocation);
 
@@ -20,6 +21,7 @@ public class main {
             //System.out.println(token + " ");
         }
 
-        System.out.println("Successful parse: " + parser.successfulParse(false));
+       // System.out.println("Successful parse: " + parser.successfulParse(false));
+       // System.out.println("Total time: " + (System.currentTimeMillis() - start));
     }
 }

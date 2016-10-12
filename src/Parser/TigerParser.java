@@ -34,6 +34,11 @@ public class TigerParser {
         Token t = null;
 
         while ((t = scanner.getToken()) != null && stack.size() > 0) {
+            if (t.isComment()) {
+                System.out.println("T is a comment");
+                continue;
+            }
+
             if (verbose) {
                 System.out.println("===========================");
                 System.out.println("TRYING TO MATCH: " + t.getToken());

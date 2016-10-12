@@ -33,6 +33,10 @@ public class Token {
         return t.getToken() != null && t.getToken().equals(token);
     }
 
+    public boolean isComment() {
+        return token.equals("COMMENT");
+    }
+
     public static Token NULL = new Token("null", null);
     public static Token COMMA = new Token("COMMA", null);
     public static Token COLON = new Token("COLON", null);
@@ -82,6 +86,7 @@ public class Token {
     public static Token INT = new Token("INT", null);
     public static Token FLOAT = new Token("FLOAT", null);
     public static Token RETURN = new Token("RETURN", null);
+    public static Token COMMENT = new Token("COMMENT", null);
 
     public static Token compose(String token) {
         return new Token(token, null);
