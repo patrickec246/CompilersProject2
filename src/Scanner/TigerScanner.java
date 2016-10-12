@@ -72,20 +72,18 @@ public class TigerScanner {
     public boolean popAndStep() {
         char c = popChar();
         if (c > 0 && c < 127) {
-            if (mode == LONGEST_MATCH) {
+            if (mode == LONGEST_MATCH && c >= 32 && c <= 128 && c != '\t') {
                 peekStack += c;
                 currentPosition++;
             }
-            System.out.print("Moving " + logic.getCurrentState() + " -> ");
             int i = logic.step(c);
-            System.out.println(logic.getCurrentState() + " on char " + c + "(" + (int)c + ")");
             if (logic.accept()) {
                 lastMatch = currentPosition;
                 lastValidState = logic.getCurrentState();
                 lastValidToken = logic.getStateName();
             }
             if (!logic.inValid()) {
-                if (logic.inComment() || (c != ' ' && c != '\n')) {
+                if (logic.inComment() || (c != ' ' && c != '\n' && c != '\t')) {
                     read += c;
                 }
             }
