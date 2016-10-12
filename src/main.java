@@ -18,10 +18,10 @@ public class main {
 
         while (!scanner.atEnd()) {
             Token token = scanner.getToken();
-            System.out.println(token + " ");
+            //System.out.println(token + " ");
         }
 
-       //System.out.println("Successful parse: " + parser.successfulParse(false));
-       //System.out.println("Total time: " + (System.currentTimeMillis() - start));
+       System.out.println("Successful parse: " + parser.successfulParse(true));
+       System.out.println("Total time: " + (System.currentTimeMillis() - start));
     }
 }

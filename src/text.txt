@@ -8,7 +8,8 @@ in
 
         for i := 1 to 100 do /* for loop for dot product */
                 sum := sum + X[i] * Y [i];
-        enddo;
+        enddo
+
         printi(sum); /* library call to printi to print the dot product */
 
 let
