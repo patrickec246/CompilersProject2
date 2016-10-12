@@ -13,3 +13,14 @@ Output:
 ```
 <VAR, "var"> <ID, "a"> <ASSIGN, ":="> <INTLIT, "25"> <SEMI, ";">
 ```
+
+# Parser
+The parser is currently a baseform implementation of an LL(1) parser, where the Token stream is received from left to right, and the Token is expanded and predicted based on the leftmost Token in the working stack. Using this method, the parser can make an absolute decision which reudction rule to use at any point. 
+
+Example:
+
+Stack:
+
+ | S | 
+--- | --- | ---
+ | $ | 
