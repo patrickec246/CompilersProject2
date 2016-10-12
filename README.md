@@ -17,37 +17,4 @@ Output:
 # Parser
 The parser is currently a baseform implementation of an LL(1) parser, where the Token stream is received from left to right, and the Token is expanded and predicted based on the leftmost Token in the working stack. Using this method, the parser can make an absolute decision which reudction rule to use at any point. 
 
-Example:
-
-Stack:
-
-```
-SS
-$
-```
-
-becomes
-```
-S
-;
-$
-```
-
-becomes
-```
-LVAL
-:=
-EXPR
-;
-$
-```
-
-becomes
-```
-id
-assign
-EXPR
-;
-$
-$
-```
+The parser expands and contracts harmonically, which is not efficient, leading to the need for LLR(0) or SLLR(1) parsing.
