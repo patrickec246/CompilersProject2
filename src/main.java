@@ -21,7 +21,7 @@ public class main {
             System.out.println(token + " ");
         }
 
-       // System.out.println("Successful parse: " + parser.successfulParse(false));
-       // System.out.println("Total time: " + (System.currentTimeMillis() - start));
+       //System.out.println("Successful parse: " + parser.successfulParse(false));
+       //System.out.println("Total time: " + (System.currentTimeMillis() - start));
     }
 }

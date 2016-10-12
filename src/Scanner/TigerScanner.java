@@ -76,7 +76,9 @@ public class TigerScanner {
                 peekStack += c;
                 currentPosition++;
             }
+            //System.out.print("Moving from state " + logic.getCurrentState() + " -> ");
             int i = logic.step(c);
+            //System.out.println(logic.getCurrentState());
             if (logic.accept()) {
                 lastMatch = currentPosition;
                 lastValidState = logic.getCurrentState();
