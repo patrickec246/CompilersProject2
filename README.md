@@ -18,3 +18,5 @@ Output:
 The parser is currently a baseform implementation of an LL(1) parser, where the Token stream is received from left to right, and the Token is expanded and predicted based on the leftmost Token in the working stack. Using this method, the parser can make an absolute decision which reudction rule to use at any point. 
 
 The parser expands and contracts harmonically, which is not efficient, leading to the need for LLR(0) or SLLR(1) parsing.
+
+The goal of the parser is to determine whether the input is syntactically correct. If the language does not exist in the grammar, the input program text will be marked as invalid. If the parser is able to walk the input code and determine its closure in the Tiger language, it will be marked as valid.
