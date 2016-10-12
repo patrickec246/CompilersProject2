@@ -14,7 +14,7 @@ in
 let
 var i,j : int := 0;
 	var FIB : ArrayInt := 0;
-	function fib(n : int) : int
+	function fib(n : int) : float
 	begin
 		if(n =  0)
 		then

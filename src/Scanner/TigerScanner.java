@@ -128,7 +128,7 @@ public class TigerScanner {
                 if (t == null) {
                     System.out.println("ERROR ON CHARACTER " + ((int)logic.getCharBuffer()) + "!");
                 }
-                System.out.println("NEXT TOKEN: " + t);
+
                 return t;
             } else {
                 System.out.println("Error at: " + currentCharacter);
@@ -148,7 +148,6 @@ public class TigerScanner {
                     System.out.println("ERROR!");
                 }
 
-                System.out.println("NEXT TOKEN: " + t);
                 return t;
             }
         }
