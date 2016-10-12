@@ -90,7 +90,7 @@ public class Token {
     public static Token RETURN = new Token("RETURN", null);
     public static Token COMMENT = new Token("COMMENT", null);
 
-    /**Use to compose ......*/
+    /**Use to compose ...*/
     public static Token compose(String token) {
         return new Token(token, null);
     }

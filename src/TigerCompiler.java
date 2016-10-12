@@ -16,12 +16,21 @@ public class TigerCompiler {
         TigerScanner scanner = new TigerScanner(fileLocation);
         TigerParser parser = new TigerParser(fileLocation);
 
-        while (!scanner.atEnd()) {
-            Token token = scanner.getToken();
+        //prints the individual tokens from the text
+        printScannerTokens(scanner);
+
+        //prints the parse results
+        printParse(parser);
+    }
+
+    public static void printScannerTokens(TigerScanner scan) {
+        while (!scan.atEnd()) {
+            Token token = scan.getToken();
             System.out.println(token + " ");
         }
+    }
 
-       System.out.println("Successful parse: " + parser.successfulParse(false));
-       System.out.println("Total time: " + (System.currentTimeMillis() - start));
+    public static void printParse(TigerParser p) {
+        System.out.println("Successful parse: " + p.successfulParse(false));
     }
 }
