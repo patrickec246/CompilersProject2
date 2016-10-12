@@ -35,7 +35,6 @@ public class TigerParser {
 
         while ((t = scanner.getToken()) != null && stack.size() > 0) {
             if (t.isComment()) {
-                System.out.println("T is a comment");
                 continue;
             }
 
@@ -74,13 +73,9 @@ public class TigerParser {
 
                 Rule rule = null;
 
-                if (ruleNumber == -1) {
-                    //todo LL(2) lookup
-                } else {
-                    rule = Rule.rules[ruleNumber];
-                    if (verbose) {
-                        System.out.println("Using rule: " + ruleNumber);
-                    }
+                rule = Rule.rules[ruleNumber];
+                if (verbose) {
+                    System.out.println("Using rule: " + ruleNumber);
                 }
 
                 //no valid LL(1) parse
@@ -119,6 +114,12 @@ public class TigerParser {
         return parseTable[rule][inputToken];
     }
 
+    /**
+     * 2D representation of the parse table. The inputs include the Token from the
+     * Scanner stream and the top Token on the stack. The Tokens are passed through
+     * a HashMap to map them to their respective index in the table, and the resulting
+     * value is mapped to a certain rule in the Rule.rules[] rule list.
+     */
     private static int[][] parseTable = new int[][] {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
@@ -138,9 +139,9 @@ public class TigerParser {
             {0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 29, 0, 0, 0, 29, 0, 0, 0, 0, 0, 0, 29, 0, 29, 0, 29, 0, 0, 0, 0, 0, 29, 0, 0, 29},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0, 31, 31, 31, 30, 0, 30, 0, 30, 0, 0, 0, 0, 0, 30, 0, 0, 30},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 31, 31, 31, 31, 30, 0, 30, 0, 30, 0, 0, 0, 0, 0, 30, 0, 0, 30},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 78, 0, 0, 0, 37, 0, 0, 0, 0, 0, 0, 35, 0, 33, 0, 39, 0, 0, 0, 0, 0, 34, 0, 0, 38},
-            {0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42, 42, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 93, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42, 42, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 44, 0, 44, 0, 44, 0, 44, 0, 0, 0, 43, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 0, 0, 0, 44, 0, 44, 0, 44, 44, 44, 44, 0, 44, 0, 44, 0, 44, 44, 0, 0, 44, 0, 0, 44},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 47, 47, 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -215,6 +216,7 @@ public class TigerParser {
         indexer.put("WHILE", 45);
         indexer.put("INT", 46);
         indexer.put("FLOAT", 47);
+        indexer.put("RETURN", 48);
         return indexer;
     }
 

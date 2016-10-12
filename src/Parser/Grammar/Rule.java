@@ -60,7 +60,7 @@ public class Rule {
     private static Rule rule19 = new Rule(Token.compose("OPINIT"), new Token[] { Token.ASSIGN, Token.compose("CONST") });
     private static Rule rule20 = new Rule(Token.compose("OPINIT"), new Token[] {});
 
-    private static Rule rule21 = new Rule(Token.compose("FD"), new Token[] { Token.FUNC, Token.ID, Token.LPAREN, Token.compose("PLIST"), Token.RPAREN, Token.compose("RETTYPE"), Token.BEGIN, Token.compose("SS"), Token.END, Token.SEMI });
+    private static Rule rule21 = new Rule(Token.compose("FD"), new Token[] { Token.FUNC, Token.ID, Token.LPAREN, Token.compose("PLIST"), Token.RPAREN, Token.compose("RETTYPE"), Token.BEGIN, Token.compose("SS"), Token.END});
 
     //PLIST
     private static Rule rule22 = new Rule(Token.compose("PLIST"), new Token[] { Token.compose("P"), Token.compose("PLIST") });
@@ -84,12 +84,12 @@ public class Rule {
 
     //SS
     private static Rule rule32 = new Rule(Token.compose("S"), new Token[] {Token.compose("LVAL"), Token.ASSIGN, Token.compose("EXPR"), Token.SEMI});
-    private static Rule rule33 = new Rule(Token.compose("S"), new Token[] {Token.IF, Token.compose("EXPR"), Token.THEN, Token.compose("SS"), Token.ENDIF});
+    private static Rule rule33 = new Rule(Token.compose("S"), new Token[] {Token.IF, Token.compose("EXPR"), Token.THEN, Token.compose("SS"), Token.ELSE, Token.compose("SS"), Token.ENDIF});
     private static Rule rule34 = new Rule(Token.compose("S"), new Token[] {Token.WHILE, Token.compose("EXPR"), Token.DO, Token.compose("SS"), Token.ENDDO});
     private static Rule rule35 = new Rule(Token.compose("S"), new Token[] {Token.FOR, Token.ID, Token.ASSIGN, Token.compose("EXPR"), Token.TO, Token.compose("EXPR"), Token.DO, Token.compose("SS"), Token.ENDDO});
     private static Rule rule36 = new Rule(Token.compose("S"), new Token[] {Token.compose("OPPREF"), Token.ID, Token.LPAREN, Token.compose("EXPRLIST"), Token.RPAREN, Token.SEMI});
     private static Rule rule37 = new Rule(Token.compose("S"), new Token[] {Token.BREAK, Token.SEMI});
-    private static Rule rule38 = new Rule(Token.compose("S"), new Token[] {Token.RETURN, Token.compose("EXPR")});
+    private static Rule rule38 = new Rule(Token.compose("S"), new Token[] {Token.RETURN, Token.compose("EXPR"), Token.SEMI});
     private static Rule rule39 = new Rule(Token.compose("S"), new Token[] {Token.LET, Token.compose("DS"), Token.IN, Token.compose("SS"), Token.END});
 
     // OPPREF
@@ -185,6 +185,8 @@ public class Rule {
     private static Rule rule91 = new Rule(Token.compose("RHSPP"), new Token[] {Token.compose("ANDOR"), Token.compose("EXPR")});
     private static Rule rule92 = new Rule(Token.compose("RHSPP"), new Token[] {});
 
+    private static Rule rule93 = new Rule(Token.compose("EXPR"), new Token[] {Token.MINUS, Token.compose("EXPR")});
+
     public static Rule[] rules = {null,
         rule1,
         rule2,
@@ -277,6 +279,7 @@ public class Rule {
         rule89,
         rule90,
         rule91,
-        rule92
+        rule92,
+        rule93
     };
 }

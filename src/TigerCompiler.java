@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Created by patrickcaruso on 9/16/16.
  */
-public class main {
+public class TigerCompiler {
 
     private static final String fileLocation = "src/text.txt";
 
@@ -18,10 +18,10 @@ public class main {
 
         while (!scanner.atEnd()) {
             Token token = scanner.getToken();
-            //System.out.println(token + " ");
+            System.out.println(token + " ");
         }
 
-       System.out.println("Successful parse: " + parser.successfulParse(true));
+       System.out.println("Successful parse: " + parser.successfulParse(false));
        System.out.println("Total time: " + (System.currentTimeMillis() - start));
     }
 }

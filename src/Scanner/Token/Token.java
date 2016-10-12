@@ -37,6 +37,8 @@ public class Token {
         return token.equals("COMMENT");
     }
 
+
+    /**Reserved Tokens*/
     public static Token NULL = new Token("null", null);
     public static Token COMMA = new Token("COMMA", null);
     public static Token COLON = new Token("COLON", null);
@@ -88,6 +90,7 @@ public class Token {
     public static Token RETURN = new Token("RETURN", null);
     public static Token COMMENT = new Token("COMMENT", null);
 
+    /**Use to compose Rules*/
     public static Token compose(String token) {
         return new Token(token, null);
     }

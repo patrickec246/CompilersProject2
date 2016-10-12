@@ -9,8 +9,14 @@ import java.util.HashMap;
  */
 public class DFA {
 
+    /**These hashmaps map character values from the stream to the respective
+     * possible transitions in both DFAS*/
+
+    //Id, variable, and operator hashmap values
     private static final HashMap<Character, Integer> mapper = initiateMap();
     private static final HashMap<Integer, String> names = initiateNames();
+
+    //Id, variable subset values
     private static final HashMap<Character, Integer> idmapper = initiateIDMap();
     private static final HashMap<Integer, String> idnames = initiateIDNames();
 
@@ -42,6 +48,10 @@ public class DFA {
         return currentState;
     }
 
+    public boolean validCharacter(char c) {
+        return mapper.get(c) != null;
+    }
+
     public boolean accept() {
         return dfaLogic[currentState][0] == 1;
     }
@@ -70,7 +80,19 @@ public class DFA {
     public boolean inComment() {
         return getCurrentState() >= 29 && getCurrentState() <= 31;
     }
-    
+
+    /**
+     * Scanner DFA for determining either ID, keywords, or operators. If a value is found to be
+     * an ID, it is passed on to the tokenLogic DFA to determine whether it is a keyword or an ID
+     * The DFA will attempt to hop states until it either reaches the null state (0) which means
+     * that there is no possible further acceptable derivation, or an accept state. If it reaches an
+     * accept state, the Scanner will save the most recent accepted token, and will add subsequent
+     * characters from the stream to a buffer. Using these characters, it will attempt to reach another
+     * accept state, and if it does, it will replace the most recent accepted token, clear the buffer,
+     * and continue in this process. Once it reaches no possible further acceptable derivation, it will
+     * return the longest Token reached, and subsequent characters will be removed from the buffer until it
+     * is empty, and then the character stream directly from the file will be resumed.
+     */
     public static final int[][] dfaLogic = new int[][] {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 28, 16, 17, 20, 21, 0, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 1, 26},
@@ -106,7 +128,13 @@ public class DFA {
             {1, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
     };
-    
+
+    /**
+     * Token logic represents a 2D representation of a DFA. The input includes the current state and the
+     * next character in the stream. The value at tokenLogic[state][character] is the value of the next
+     * state in the DFA. The scanner will loop through, jumping from state to state until it reaches an accept
+     * state. If it reaches an accept state, the Scanner
+     */
     private static int[][] tokenLogic = new int[][]{
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 0, 15, 17, 25, 0, 0, 31, 0, 0, 34, 0, 0, 37, 0, 0, 63, 0, 39, 0, 47, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},

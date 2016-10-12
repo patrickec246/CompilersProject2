@@ -30,7 +30,7 @@
 30 - SSUF -> S SSUF
 31 - SSUF -> ε
 32 - S -> LVAL assign EXPR
-33 - S -> if EXPR then SS endif
+33 - S -> if EXPR then SS else SS endif
 34 - S -> while EXPR do SS enddo
 35 - S -> for id assign EXPR to EXPR do SS enddo semi
 36 - S -> OPPREF id ( EXPRLIST ) semi
@@ -90,3 +90,4 @@
 90 - RHSPP -> COMPARATOR EXPR
 91 - RHSPP -> ANDOR EXPR
 92 - RHSPP -> ε
+93 - EXPR -> - EXPR

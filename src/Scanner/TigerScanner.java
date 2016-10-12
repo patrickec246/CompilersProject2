@@ -71,14 +71,23 @@ public class TigerScanner {
 
     public boolean popAndStep() {
         char c = popChar();
+        if (!logic.validCharacter(c) && c > 9) {
+            System.out.println("Lexical error on character " + c + " (" + (int)c + ")");
+            mode = FIRST_MATCH;
+            currentPosition = 0;
+            logic.reset();
+            read = "";
+            return false;
+        }
+
         if (c > 0 && c < 127) {
             if (mode == LONGEST_MATCH && c >= 32 && c <= 128 && c != '\t') {
                 peekStack += c;
                 currentPosition++;
             }
-            //System.out.print("Moving from state " + logic.getCurrentState() + " -> ");
+
             int i = logic.step(c);
-            //System.out.println(logic.getCurrentState());
+
             if (logic.accept()) {
                 lastMatch = currentPosition;
                 lastValidState = logic.getCurrentState();
@@ -91,10 +100,8 @@ public class TigerScanner {
             }
             return true;
         } else {
-            //System.out.println((int)c);
             return false;
         }
-        //System.out.println(" -> " + logic.getStateName() + " [via '" + c + "' transition | " + peekStack + "]");
     }
 
     public boolean atEnd() {
@@ -127,29 +134,21 @@ public class TigerScanner {
                     t = logic.identifierToToken(t);
                 }
 
-                if (t == null) {
-                    System.out.println("ERROR ON CHARACTER " + ((int)logic.getCharBuffer()) + "!");
-                }
-
                 return t;
             } else {
                 System.out.println("Error at: " + currentCharacter);
-                System.exit(0);
+                return null;
             }
         } else {
             if (popAndStep()) {
                 if (logic.accept()) {
                     mode = LONGEST_MATCH;
                 }
-            } else {
+            } else if (read != null && read.length() > 0){
                 Token t = Token.getToken(lastValidToken, read);
                 if (t.getToken().equals("ID")) {
                     t = logic.identifierToToken(t);
                 }
-                if (t == null) {
-                    System.out.println("ERROR!");
-                }
-
                 return t;
             }
         }
