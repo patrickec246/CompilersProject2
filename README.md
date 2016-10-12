@@ -21,12 +21,33 @@ Example:
 
 Stack:
 
-| SS | 
-| --- | ---
-| $ | 
+```
+SS
+$
+```
 
 becomes
+```
+S
+;
+$
+```
 
-| SS | 
-| --- | ---
-| $ | 
+becomes
+```
+LVAL
+:=
+EXPR
+;
+$
+```
+
+becomes
+```
+id
+assign
+EXPR
+;
+$
+$
+```
