@@ -85,7 +85,7 @@ public class TigerScanner {
                 lastValidToken = logic.getStateName();
             }
             if (!logic.inValid()) {
-                if (c != ' ' && c != '\n') {
+                if (logic.inComment() || (c != ' ' && c != '\n')) {
                     read += c;
                 }
             }

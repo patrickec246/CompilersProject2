@@ -66,6 +66,10 @@ public class DFA {
     public String getStateName() {
         return names.get(getCurrentState());
     }
+
+    public boolean inComment() {
+        return getCurrentState() >= 29 && getCurrentState() <= 31;
+    }
     
     public static final int[][] dfaLogic = new int[][] {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
